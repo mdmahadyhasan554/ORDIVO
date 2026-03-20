@@ -218,6 +218,7 @@ if ($vendorId) {
     <link href="../assets/logo-animations.css" rel="stylesheet">
     <!-- Homepage CSS (includes footer styles) -->
     <link href="../assets/css/homepage.css" rel="stylesheet">
+    <link href="../assets/css/skeleton.css" rel="stylesheet">
     
     <style>
         :root {

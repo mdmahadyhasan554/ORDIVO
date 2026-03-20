@@ -9,6 +9,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 function initializeHomepage() {
+    // Show skeletons immediately before any fetch
+    showRestaurantSkeletons('featuredRestaurants');
+    showCuisineSkeletons('cuisinesContainer');
+    showRestaurantSkeletons('featuredProductsContainer');
+    showRestaurantSkeletons('topChoiceProductsContainer');
+    showRestaurantSkeletons('restaurantsGrid');
+
     loadFeaturedRestaurants();
     loadCuisines();
     loadFeaturedProducts();
@@ -18,6 +25,42 @@ function initializeHomepage() {
     initializeFilters();
     // initializeLocationModal(); // Now handled by location-tracker.js
     initializeSwipers();
+}
+
+// --- Skeleton helpers ---
+function cardSkeleton() {
+    return `<div class="swiper-slide">
+        <div class="skeleton-card">
+            <div class="skeleton skeleton-img"></div>
+            <div class="skeleton-body">
+                <div class="skeleton skeleton-line full"></div>
+                <div class="skeleton skeleton-line medium"></div>
+                <div class="skeleton-footer">
+                    <div class="skeleton skeleton-line"></div>
+                    <div class="skeleton skeleton-line"></div>
+                </div>
+            </div>
+        </div>
+    </div>`;
+}
+
+function cuisineSkeleton() {
+    return `<div class="swiper-slide">
+        <div class="skeleton-cuisine">
+            <div class="skeleton skeleton-circle"></div>
+            <div class="skeleton skeleton-label"></div>
+        </div>
+    </div>`;
+}
+
+function showRestaurantSkeletons(containerId, count = 6) {
+    const el = document.getElementById(containerId);
+    if (el) el.innerHTML = Array(count).fill(cardSkeleton()).join('');
+}
+
+function showCuisineSkeletons(containerId, count = 8) {
+    const el = document.getElementById(containerId);
+    if (el) el.innerHTML = Array(count).fill(cuisineSkeleton()).join('');
 }
 
 // Load Featured Restaurants
